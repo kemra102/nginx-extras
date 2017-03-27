@@ -1,0 +1,13 @@
+{
+  "nginx_version": "1.10.3",
+  "modules": {
+    "vts": {
+      "library_name": "ngx_http_vhost_traffic_status_module.so",
+      "source_url": "https://github.com/vozlt/nginx-module-vts/archive/",
+      "sources": [
+        "Changes", "LICENSE", "README.md"
+      ],
+      "version": "0.1.14"
+    }
+  }
+}
