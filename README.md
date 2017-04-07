@@ -36,3 +36,32 @@ $ docker run -v $(pwd):/src 84617779f808 /src/package_build.sh vts
 ```
 
 The created RPM will end up in `build/RPMS`.
+
+### Example
+
+```sh
+➜ kemra102@localhost˜  ~/src/nginx-extras git:(master) docker build .
+Sending build context to Docker daemon 6.978 MB
+Step 1/5 : FROM centos:7
+ ---> 98d35105a391
+ <snip>
+ Complete!
+ ---> 84617779f808
+Removing intermediate container 9bf5b3adf6c9
+Successfully built 84617779f808
+➜ kemra102@localhost  ~/src/nginx-extras git:(master) docker run -v $(pwd):/src 84617779f808 /src/package_build.sh vts
+checking for OS
+ + Linux 4.9.13-moby x86_64
+checking for C compiler ... found
+ + using GNU C compiler
+ + gcc version: 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)
+ <snip>
+ Wrote: /src/build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
+Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.QYRWoY
++ umask 022
++ cd /src/build/BUILD
++ /usr/bin/rm -rf /src/build/BUILDROOT/nginx-module-vts-0.1.14-1.el7.wso.x86_64
++ exit 0
+➜ kemra102@localhost  ~/src/nginx-extras git:(master) stat build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
+16777220 2509770 -rw-r--r-- 1 kemra102 localhost 0 242052 "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" 4096 480 0 build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
+```
