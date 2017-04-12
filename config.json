@@ -4,10 +4,22 @@
     "vts": {
       "library_name": "ngx_http_vhost_traffic_status_module.so",
       "source_url": "https://github.com/vozlt/nginx-module-vts/archive/",
+      "source_location": "",
+      "source_filename": "nginx-module-vts-0.1.14",
       "sources": [
         "Changes", "LICENSE", "README.md"
       ],
-      "version": "0.1.14"
+      "version": "v0.1.14"
+    },
+    "naxsi": {
+      "library_name": "ngx_http_naxsi_module.so",
+      "source_url": "https://github.com/nbs-system/naxsi/archive/",
+      "source_location": "/naxsi_src",
+      "source_filename": "naxsi-0.55.3",
+      "sources": [
+        "LICENSE", "README.md"
+      ],
+      "version": "0.55.3"
     }
   }
 }
