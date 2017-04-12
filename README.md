@@ -37,10 +37,10 @@ $ docker run -v $(pwd):/src 84617779f808 /src/package_build.sh vts
 
 The created RPM will end up in `build/RPMS`.
 
-### Example using vts
+## Example using vts
 Inspect config.json for configs used.
 
-#Build Module
+# Build Module
 ```sh
 @localhost˜  ~/src/nginx-extras git:(master) docker build .
 Sending build context to Docker daemon 6.978 MB
@@ -70,7 +70,7 @@ Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.QYRWoY
 16777220 2509770 -rw-r--r-- 1 kemra102 localhost 0 242052 "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" 4096 480 0 build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
 ```
 
-#Install / Use module
+# Install / Use module
 Install the version of nginx specified in config.json. In this example we are using the nginx repo.
 ```sh
 yum -y -q install nginx-1.10.3-1.el7.ngx.x86_64
