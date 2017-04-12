@@ -37,10 +37,12 @@ $ docker run -v $(pwd):/src 84617779f808 /src/package_build.sh vts
 
 The created RPM will end up in `build/RPMS`.
 
-### Example
+### Example using vts
+Inspect config.json for configs used.
 
+#Build Module
 ```sh
-➜ kemra102@localhost˜  ~/src/nginx-extras git:(master) docker build .
+@localhost˜  ~/src/nginx-extras git:(master) docker build .
 Sending build context to Docker daemon 6.978 MB
 Step 1/5 : FROM centos:7
  ---> 98d35105a391
@@ -49,7 +51,8 @@ Step 1/5 : FROM centos:7
  ---> 84617779f808
 Removing intermediate container 9bf5b3adf6c9
 Successfully built 84617779f808
-➜ kemra102@localhost  ~/src/nginx-extras git:(master) docker run -v $(pwd):/src 84617779f808 /src/package_build.sh vts
+
+@localhost  ~/src/nginx-extras git:(master) docker run -v $(pwd):/src 84617779f808 /src/package_build.sh vts
 checking for OS
  + Linux 4.9.13-moby x86_64
 checking for C compiler ... found
@@ -62,6 +65,36 @@ Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.QYRWoY
 + cd /src/build/BUILD
 + /usr/bin/rm -rf /src/build/BUILDROOT/nginx-module-vts-0.1.14-1.el7.wso.x86_64
 + exit 0
-➜ kemra102@localhost  ~/src/nginx-extras git:(master) stat build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
+
+@localhost  ~/src/nginx-extras git:(master) stat build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
 16777220 2509770 -rw-r--r-- 1 kemra102 localhost 0 242052 "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" "Apr  7 13:48:03 2017" 4096 480 0 build/RPMS/x86_64/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
+```
+
+#Install / Use module
+Install the version of nginx specified in config.json. In this example we are using the nginx repo.
+```sh
+yum -y -q install nginx-1.10.3-1.el7.ngx.x86_64
+```
+
+Install the module
+```sh
+rpm -ivh /vagrant/scripts/nginx-module-vts-0.1.14-1.el7.wso.x86_64.rpm
+```
+
+Tell nginx to use the module using the 'load_module' directive.
+```sh
+sed -i '1s;^;load_module "/usr/lib64/nginx/modules/ngx_http_vhost_traffic_status_module.so"\;\n;' /etc/nginx/nginx.conf
+```
+
+Then follow module specific setup steps.
+For vts we need to setup /status & point to the module.
+
+```sh
+#example /etc/nginx/conf.d/localhost.conf
+vhost_traffic_status_zone;
+
+location /status {
+          vhost_traffic_status_display;
+          vhost_traffic_status_display_format html;
+}
 ```
