@@ -1,15 +1,17 @@
 %if 0%{?rhel} == 6
-  %define dist el6
+  %define dist .el6
 %endif
 %if 0%{?rhel} == 7
-  %define dist el7
+  %define dist .el7
+  %define epoch 1
+Epoch: %{epoch}
 %endif
 %define version %{getenv:MODULE_VERSION}
 
 Summary: NGINX virtual host traffic status module.
 Name: nginx-module-vts
 Version: %{?version}
-Release: 1.%{?dist}.wso
+Release: 1%{?dist}.wso
 License: BSD
 Group: System Environment/Daemons
 URL: https://github.com/vozlt/nginx-module-vts
@@ -20,7 +22,7 @@ Source2: Changes
 Source3: README.md
 
 BuildArch: x86_64
-Requires: nginx
+Requires: nginx == %{?epoch:%{epoch}:}%{getenv:NGINX_VERSION}-1%{?dist}.ngx
 
 %description
 NGINX virtual host traffic status module.
