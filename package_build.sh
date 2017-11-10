@@ -12,6 +12,7 @@ set -ae
 : ${NGINX_VERSION=$(jq -r '.nginx_version' < "$BASE_DIR"/config.json)}
 : ${NGINX_URL="http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz"}
 : ${SHARED_LIBRARY=$(jq -r ".modules.$MODULE_NAME.library_name" < "$BASE_DIR"/config.json)}
+: ${RELEASE_NUMBER=$(jq -r ".modules.$MODULE_NAME.release" < "$BASE_DIR"/config.json)}}
 
 # Clean build directory
 if [ -d "$BUILD_DIR" ]; then

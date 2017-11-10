@@ -7,11 +7,12 @@
 Epoch: %{epoch}
 %endif
 %define version %{getenv:MODULE_VERSION}
+%define release %{getenv:RELEASE_NUMBER}
 
 Summary: NGINX NAXSI (Nginx Anti XSS & SQL Injection) WAF
 Name: nginx-module-naxsi
 Version: %{?version}
-Release: 1%{?dist}.wso
+Release: %{release}%{?dist}.wso
 License: BSD
 Group: System Environment/Daemons
 URL: https://github.com/nbs-system/naxsi
@@ -21,7 +22,7 @@ Source1: LICENSE
 Source2: README.md
 
 BuildArch: x86_64
-Requires: nginx == %{?epoch:%{epoch}:}%{getenv:NGINX_VERSION}-1%{?dist}.ngx
+Requires: nginx == %{?epoch:%{epoch}:}%{getenv:NGINX_VERSION}
 
 %description
 NGINX NAXSI (Nginx Anti XSS & SQL Injection) WAF

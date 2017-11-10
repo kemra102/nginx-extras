@@ -1,5 +1,5 @@
 {
-  "nginx_version": "1.12.0",
+  "nginx_version": "1.12.2",
   "modules": {
     "vts": {
       "library_name": "ngx_http_vhost_traffic_status_module.so",
@@ -9,7 +9,8 @@
       "sources": [
         "Changes", "LICENSE", "README.md"
       ],
-      "version": "v0.1.14"
+      "version": "v0.1.14",
+      "release": "1"
     },
     "naxsi": {
       "library_name": "ngx_http_naxsi_module.so",
@@ -19,7 +20,8 @@
       "sources": [
         "LICENSE", "README.md"
       ],
-      "version": "0.55.3"
+      "version": "0.55.3",
+      "release": "1"
     }
   }
 }
